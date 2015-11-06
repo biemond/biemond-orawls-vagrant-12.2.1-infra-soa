@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-jms xmlns="http://xmlns.oracle.com/weblogic/weblogic-jms">
+  <destination-key name="Priority">
+    <property>JMSPriority</property>
+    <key-type>Int</key-type>
+    <sort-order>Descending</sort-order>
+  </destination-key>
+  <connection-factory name="OraSDPM/QueueConnectionFactory">
+    <default-targeting-enabled>true</default-targeting-enabled>
+    <jndi-name>OraSDPM/QueueConnectionFactory</jndi-name>
+    <default-delivery-params>
+      <default-delivery-mode>Persistent</default-delivery-mode>
+      <!--redeliver delay in ms-->
+      <default-redelivery-delay>400</default-redelivery-delay>
+    </default-delivery-params>
+    <transaction-params>
+      <xa-connection-factory-enabled>true</xa-connection-factory-enabled>
+    </transaction-params>
+  </connection-factory>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineSndQ1_auto_1_auto">
+    <sub-deployment-name>UMSJMSServer1308252220</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineRcvQ1_auto_1_auto">
+    <sub-deployment-name>UMSJMSServer1308252220</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMDriverDefSndQ1_auto_1_auto">
+    <sub-deployment-name>UMSJMSServer1308252220</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMDriverDefSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvQ1_auto_1_auto">
+    <sub-deployment-name>UMSJMSServer1308252220</sub-deployment-name>
+    <delivery-failure-params>
+      <error-destination>dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto</error-destination>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto">
+    <sub-deployment-name>UMSJMSServer1308252220</sub-deployment-name>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMWSRcvQ1_auto_1_auto">
+    <sub-deployment-name>UMSJMSServer1308252220</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMWSRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEnginePendingRcvQ_auto_1_auto">
+    <sub-deployment-name>UMSJMSServer1308252220</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEnginePendingRcvQ</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineSndQ1_auto_1_auto_1">
+    <sub-deployment-name>UMSJMSServer_auto_12439629621877663031</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineRcvQ1_auto_1_auto_1">
+    <sub-deployment-name>UMSJMSServer_auto_12439629621877663031</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMDriverDefSndQ1_auto_1_auto_1">
+    <sub-deployment-name>UMSJMSServer_auto_12439629621877663031</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMDriverDefSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvQ1_auto_1_auto_1">
+    <sub-deployment-name>UMSJMSServer_auto_12439629621877663031</sub-deployment-name>
+    <delivery-failure-params>
+      <error-destination>dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1</error-destination>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1">
+    <sub-deployment-name>UMSJMSServer_auto_12439629621877663031</sub-deployment-name>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMWSRcvQ1_auto_1_auto_1">
+    <sub-deployment-name>UMSJMSServer_auto_12439629621877663031</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMWSRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEnginePendingRcvQ_auto_1_auto_1">
+    <sub-deployment-name>UMSJMSServer_auto_12439629621877663031</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEnginePendingRcvQ</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineSndQ1_auto_1_auto_1_2">
+    <sub-deployment-name>UMSJMSServer_auto_111591218851658730170</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineRcvQ1_auto_1_auto_1_2">
+    <sub-deployment-name>UMSJMSServer_auto_111591218851658730170</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMDriverDefSndQ1_auto_1_auto_1_2">
+    <sub-deployment-name>UMSJMSServer_auto_111591218851658730170</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMDriverDefSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvQ1_auto_1_auto_1_2">
+    <sub-deployment-name>UMSJMSServer_auto_111591218851658730170</sub-deployment-name>
+    <delivery-failure-params>
+      <error-destination>dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2</error-destination>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2">
+    <sub-deployment-name>UMSJMSServer_auto_111591218851658730170</sub-deployment-name>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMWSRcvQ1_auto_1_auto_1_2">
+    <sub-deployment-name>UMSJMSServer_auto_111591218851658730170</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMWSRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEnginePendingRcvQ_auto_1_auto_1_2">
+    <sub-deployment-name>UMSJMSServer_auto_111591218851658730170</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEnginePendingRcvQ</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineSndQ1_auto_1_auto_1_2_3">
+    <sub-deployment-name>UMSJMSServer_auto_111366994842138130739</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineRcvQ1_auto_1_auto_1_2_3">
+    <sub-deployment-name>UMSJMSServer_auto_111366994842138130739</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMDriverDefSndQ1_auto_1_auto_1_2_3">
+    <sub-deployment-name>UMSJMSServer_auto_111366994842138130739</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMDriverDefSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvQ1_auto_1_auto_1_2_3">
+    <sub-deployment-name>UMSJMSServer_auto_111366994842138130739</sub-deployment-name>
+    <delivery-failure-params>
+      <error-destination>dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2_3</error-destination>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2_3">
+    <sub-deployment-name>UMSJMSServer_auto_111366994842138130739</sub-deployment-name>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMWSRcvQ1_auto_1_auto_1_2_3">
+    <sub-deployment-name>UMSJMSServer_auto_111366994842138130739</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMWSRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEnginePendingRcvQ_auto_1_auto_1_2_3">
+    <sub-deployment-name>UMSJMSServer_auto_111366994842138130739</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEnginePendingRcvQ</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineSndQ1_auto_1_auto_1_2_3_4">
+    <sub-deployment-name>UMSJMSServer_auto_11213486742908417147</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineRcvQ1_auto_1_auto_1_2_3_4">
+    <sub-deployment-name>UMSJMSServer_auto_11213486742908417147</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMDriverDefSndQ1_auto_1_auto_1_2_3_4">
+    <sub-deployment-name>UMSJMSServer_auto_11213486742908417147</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMDriverDefSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvQ1_auto_1_auto_1_2_3_4">
+    <sub-deployment-name>UMSJMSServer_auto_11213486742908417147</sub-deployment-name>
+    <delivery-failure-params>
+      <error-destination>dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2_3_4</error-destination>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2_3_4">
+    <sub-deployment-name>UMSJMSServer_auto_11213486742908417147</sub-deployment-name>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMWSRcvQ1_auto_1_auto_1_2_3_4">
+    <sub-deployment-name>UMSJMSServer_auto_11213486742908417147</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMWSRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEnginePendingRcvQ_auto_1_auto_1_2_3_4">
+    <sub-deployment-name>UMSJMSServer_auto_11213486742908417147</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEnginePendingRcvQ</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineSndQ1_auto">
+    <sub-deployment-name>UMSJMSServer_auto_113163312449142777</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineRcvQ1_auto">
+    <sub-deployment-name>UMSJMSServer_auto_113163312449142777</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMDriverDefSndQ1_auto">
+    <sub-deployment-name>UMSJMSServer_auto_113163312449142777</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMDriverDefSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvQ1_auto">
+    <sub-deployment-name>UMSJMSServer_auto_113163312449142777</sub-deployment-name>
+    <delivery-failure-params>
+      <error-destination>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1</error-destination>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto">
+    <sub-deployment-name>UMSJMSServer_auto_113163312449142777</sub-deployment-name>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMWSRcvQ1_auto">
+    <sub-deployment-name>UMSJMSServer_auto_113163312449142777</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMWSRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEnginePendingRcvQ_auto">
+    <sub-deployment-name>UMSJMSServer_auto_113163312449142777</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEnginePendingRcvQ</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineSndQ1_auto_1_auto_1_2_3_4_5">
+    <sub-deployment-name>UMSJMSServer_auto_11136527301347984417</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEngineRcvQ1_auto_1_auto_1_2_3_4_5">
+    <sub-deployment-name>UMSJMSServer_auto_11136527301347984417</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEngineRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMDriverDefSndQ1_auto_1_auto_1_2_3_4_5">
+    <sub-deployment-name>UMSJMSServer_auto_11136527301347984417</sub-deployment-name>
+    <destination-key>Priority</destination-key>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMDriverDefSndQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvQ1_auto_1_auto_1_2_3_4_5">
+    <sub-deployment-name>UMSJMSServer_auto_11136527301347984417</sub-deployment-name>
+    <delivery-failure-params>
+      <error-destination>dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2_3_4_5</error-destination>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1_auto_1_auto_1_2_3_4_5">
+    <sub-deployment-name>UMSJMSServer_auto_11136527301347984417</sub-deployment-name>
+    <jndi-name>OraSDPM/Queues/OraSDPMAppDefRcvErrorQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMWSRcvQ1_auto_1_auto_1_2_3_4_5">
+    <sub-deployment-name>UMSJMSServer_auto_11136527301347984417</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMWSRcvQ1</jndi-name>
+  </uniform-distributed-queue>
+  <uniform-distributed-queue name="dist_OraSDPM/Queues/OraSDPMEnginePendingRcvQ_auto_1_auto_1_2_3_4_5">
+    <sub-deployment-name>UMSJMSServer_auto_11136527301347984417</sub-deployment-name>
+    <delivery-failure-params>
+      <redelivery-limit>2</redelivery-limit>
+      <expiration-policy>Log</expiration-policy>
+    </delivery-failure-params>
+    <jndi-name>OraSDPM/Queues/OraSDPMEnginePendingRcvQ</jndi-name>
+  </uniform-distributed-queue>
+</weblogic-jms>
