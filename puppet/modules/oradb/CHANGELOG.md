@@ -1,7 +1,26 @@
 # Version updates
 
+## 2.0.4
+- some more strict file permissions
+- rcu allows now more complex passwords
+- allow to change the service name instead of dbora
+- installdb is_rack_one_install option for 12.1.0.2
+- db_control type & dbcontrol manifest supports now also Grid
+
+## 2.0.3
+- security/permissions fixes with files which can contain passwords
+- RCU now uses system call instead of backticks which allows more complex passwords
+
+## 2.0.2
+- support the new opatchauto utility instead of opatch auto by use_opatchauto_utility => true
+- support 12.1 CDB with custom database template
+- changed the default oraInventory location when it is not defined
+
 ## 2.0.1
--  bash_profile option for database clients
+- bash_profile option for database clients
+- rcu 11g fix
+- 12.1.0.2 oracle client template
+- db_listener type refreshonly fix
 
 ## 2.0.0
 - All parameters of classes or defines are now in snake case and not in camel case

@@ -76,8 +76,9 @@ define oradb::installasm(
   }
 
   if $ora_inventory_dir == undef {
-    $oraInventory = "${grid_base}/oraInventory"
+    $oraInventory = pick($::oradb_inst_loc_data,oradb_cleanpath("${grid_base}/../oraInventory"))
   } else {
+    validate_absolute_path($ora_inventory_dir)
     $oraInventory = "${ora_inventory_dir}/oraInventory"
   }
 
@@ -174,7 +175,7 @@ define oradb::installasm(
       file { "${download_dir}/grid_install_${version}.rsp":
         ensure  => present,
         content => template("oradb/grid_install_${version}.rsp.erb"),
-        mode    => '0775',
+        mode    => '0770',
         owner   => $user,
         group   => $group,
         require => [Oradb::Utils::Dborainst["grid orainst ${version}"],
