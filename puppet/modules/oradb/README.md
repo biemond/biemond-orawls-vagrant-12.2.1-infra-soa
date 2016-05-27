@@ -1,6 +1,11 @@
 # Oracle Database puppet module
 [![Build Status](https://travis-ci.org/biemond/biemond-oradb.png)](https://travis-ci.org/biemond/biemond-oradb) [![Coverage Status](https://coveralls.io/repos/biemond/biemond-oradb/badge.png?branch=master)](https://coveralls.io/r/biemond/biemond-oradb?branch=master)
 
+Latest puppet 4 version (It cannot be used with puppet 3) is located at [puppet4_3_data branch](https://github.com/biemond/biemond-oradb/tree/puppet4_3_data) and uses the latest features of puppet 4 like
+- Strong data typing
+- Internal hiera module data
+
+
 created by Edwin Biemond
 [biemond.blogspot.com](http://biemond.blogspot.com)
 [Github homepage](https://github.com/biemond/puppet)
@@ -281,7 +286,7 @@ or
     oradb::installdb{ '112010_Linux-x86-64':
       version       => '11.2.0.1',
       file          => 'linux.x64_11gR2_database',
-      DATABASETYPE  => 'SE',
+      database_type => 'SE',
       oracle_base   => '/oracle',
       oracle_home   => '/oracle/product/11.2/db',
       user          => 'oracle',
@@ -1061,7 +1066,7 @@ or
       logoutput                 => true,
     }
 
-## Enteprise Mananager
+## Enterprise Manager
 
     oradb::installem{ 'em12104':
       version                     => '12.1.0.4',

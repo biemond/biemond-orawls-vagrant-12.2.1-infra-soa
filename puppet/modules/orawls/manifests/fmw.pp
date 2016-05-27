@@ -24,10 +24,17 @@ define orawls::fmw(
   $remote_file          = true,                              # true|false
   $log_output           = false,                             # true|false
   $temp_directory       = hiera('wls_temp_dir','/tmp'),      # /tmp directory
+  $ohs_mode             = hiera('ohs_mode', 'collocated'),
+  $oracle_inventory_dir = undef,
 )
 {
   $exec_path    = "${jdk_home_dir}/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:"
-  $oraInventory = "${oracle_base_home_dir}/oraInventory"
+
+  if $oracle_inventory_dir == undef {
+    $oraInventory = "${oracle_base_home_dir}/oraInventory"
+  } else {
+    $oraInventory = $oracle_inventory_dir
+  }
 
   case $::kernel {
     'Linux': {
@@ -315,6 +322,18 @@ define orawls::fmw(
 
   } elsif ( $fmw_product == 'web') {
 
+    if ($ohs_mode == 'standalone') {
+      $install_type = 'Standalone HTTP Server (Managed independently of WebLogic server)'
+    } elsif ($ohs_mode in ['colocated','collocated']) {
+      if $version == 1212 {
+        $install_type = 'Colocated HTTP Server (Managed through WebLogic server)'
+      } else {
+        $install_type = 'Collocated HTTP Server (Managed through WebLogic server)'
+      }
+    } else {
+      fail("Unrecognized parameter ohs_mode: ${ohs_mode}, please use colocated|collocated|standalone")
+    }
+
     if $version == 1212 {
       $fmw_silent_response_file = 'orawls/web_http_server_1212.rsp.erb'
       $binFile1                 = 'ohs_121200_linux64.bin'
@@ -503,7 +522,7 @@ define orawls::fmw(
         $disk3_file = "${source}/${fmw_file3}"
       }
 
-      exec { "extract ${fmw_file3}":
+      exec { "extract ${fmw_file3} for ${name}":
         command   => "unzip -o ${disk3_file} -d ${download_dir}/${sanitised_title}",
         creates   => $createFile3,
         path      => $exec_path,
@@ -511,7 +530,7 @@ define orawls::fmw(
         group     => $os_group,
         cwd       => $temp_directory,
         logoutput => false,
-        require   => Exec["extract ${fmw_file2}"],
+        require   => Exec["extract ${fmw_file2} for ${name}"],
         before    => Exec["install ${sanitised_title}"],
       }
     }
@@ -529,14 +548,14 @@ define orawls::fmw(
           backup  => false,
           before  => Exec["extract ${fmw_file4}"],
           require => [File["${download_dir}/${fmw_file3}"],
-                      Exec["extract ${fmw_file3}"],],
+                      Exec["extract ${fmw_file3} for ${name}"],],
         }
         $disk4_file = "${download_dir}/${fmw_file4}"
       } else {
         $disk4_file = "${source}/${fmw_file4}"
       }
 
-      exec { "extract ${fmw_file4}":
+      exec { "extract ${fmw_file4} for ${name}":
         command   => "unzip -o ${disk4_file} -d ${download_dir}/${sanitised_title}",
         creates   => $createFile4,
         path      => $exec_path,
@@ -544,7 +563,7 @@ define orawls::fmw(
         group     => $os_group,
         cwd       => $temp_directory,
         logoutput => false,
-        require   => Exec["extract ${fmw_file3}"],
+        require   => Exec["extract ${fmw_file3} for ${name}"],
         before    => Exec["install ${sanitised_title}"],
       }
     }
@@ -555,7 +574,7 @@ define orawls::fmw(
           exec { "add -d64 oraparam.ini ${sanitised_title}":
             command   => "sed -e's/JRE_MEMORY_OPTIONS=\" -Xverify:none\"/JRE_MEMORY_OPTIONS=\"-d64 -Xverify:none\"/g' ${download_dir}/${sanitised_title}/Disk1/install/${installDir}/oraparam.ini > ${temp_directory}/soa.tmp && mv ${temp_directory}/soa.tmp ${download_dir}/${sanitised_title}/Disk1/install/${installDir}/oraparam.ini",
             unless    => "grep 'JRE_MEMORY_OPTIONS=\"-d64' ${download_dir}/${sanitised_title}/Disk1/install/${installDir}/oraparam.ini",
-            require   => Exec["extract ${fmw_file1} for ${name}","extract ${fmw_file2}"],
+            require   => Exec["extract ${fmw_file1} for ${name}","extract ${fmw_file2} for ${name}"],
             before    => Exec["install ${sanitised_title}"],
             path      => $exec_path,
             user      => $os_user,
