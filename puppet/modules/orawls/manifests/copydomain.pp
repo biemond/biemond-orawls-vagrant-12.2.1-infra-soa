@@ -3,7 +3,7 @@
 #   copydomain to an other nodes
 ##
 define orawls::copydomain (
-  $version                    = hiera('wls_version'               , 1111),  # 1036|1111|1211|1212
+  $version                    = hiera('wls_version'               , 1111),  # 1036|1111|1211|1212|1221|12211
   $middleware_home_dir        = hiera('wls_middleware_home_dir'), # /opt/oracle/middleware11gR1
   $weblogic_home_dir          = hiera('wls_weblogic_home_dir'), # /opt/oracle/middleware11gR1/wlserver_103
   $jdk_home_dir               = hiera('wls_jdk_home_dir'), # /usr/java/jdk1.7.0_45
@@ -24,8 +24,16 @@ define orawls::copydomain (
   $log_dir                    = hiera('wls_log_dir'               , undef), # /data/logs
   $log_output                 = false, # true|false
   $server_start_mode          = 'dev', # dev/prod
+  $wls_domains_file           = undef,
+  $puppet_os_user             = 'root',
 )
 {
+  if ( $wls_domains_file == undef or $wls_domains_file == '' ){
+    $wls_domains_file_location = '/etc/wls_domains.yaml'
+  } else {
+    $wls_domains_file_location = $wls_domains_file
+  }
+
   if ( $wls_domains_dir == undef or $wls_domains_dir == '' ) {
     $domains_dir = "${middleware_home_dir}/user_projects/domains"
   } else {
@@ -41,7 +49,7 @@ define orawls::copydomain (
   if ( $version == 1036 or $version == 1111 or $version == 1211 ) {
     $nodeMgrHome = "${weblogic_home_dir}/common/nodemanager"
 
-  } elsif ( $version == 1212 or $version == 1213 or $version == 1221 ) {
+  } elsif ( $version == 1212 or $version == 1213 or $version >= 1221) {
     $nodeMgrHome = "${domains_dir}/${domain_name}/nodemanager"
 
   } else {
@@ -78,7 +86,7 @@ define orawls::copydomain (
         exec { "create ${log_dir} directory":
           command => "mkdir -p ${log_dir}",
           unless  => "test -d ${log_dir}",
-          user    => 'root',
+          user    => $puppet_os_user,
           path    => $exec_path,
         }
       }
@@ -163,7 +171,7 @@ define orawls::copydomain (
 
     $unPackCommand = "-domain=${domains_dir}/${domain_name} -template=${download_dir}/domain_${domain_name}.jar ${$app_dir_arg} -server_start_mode=${server_start_mode} -log=${download_dir}/domain_${domain_name}.log -log_priority=INFO"
 
-    if ( $version == 1221 ) {
+    if ( $version == 1221 or $version == 12211 ) {
       $bin_dir = "${middleware_home_dir}/oracle_common/common/bin/unpack.sh"
     } else {
       $bin_dir = "${weblogic_home_dir}/common/bin/unpack.sh"
@@ -182,7 +190,7 @@ define orawls::copydomain (
     }
 
     yaml_setting { "domain ${title}":
-      target =>  '/etc/wls_domains.yaml',
+      target =>  $wls_domains_file_location,
       key    =>  "domains/${domain_name}",
       value  =>  "${domains_dir}/${domain_name}",
     }

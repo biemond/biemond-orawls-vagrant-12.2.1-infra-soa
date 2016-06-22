@@ -5,7 +5,7 @@ wls_weblogic_user:        &wls_weblogic_user        "weblogic"
 
 wls_weblogic_home_dir:    &wls_weblogic_home_dir    "/opt/oracle/middleware12c/wlserver"
 wls_middleware_home_dir:  &wls_middleware_home_dir  "/opt/oracle/middleware12c"
-wls_version:              &wls_version              1221
+wls_version:              &wls_version              12211
 wls_domains_dir:          &wls_domains_dir          '/opt/oracle/wlsdomains/domains'
 wls_apps_dir:             &wls_apps_dir             '/opt/oracle/wlsdomains/applications'
 
@@ -13,7 +13,7 @@ orawls::weblogic::log_output:           true
 orawls::weblogic::wls_domains_dir:      *wls_domains_dir
 orawls::weblogic::wls_apps_dir:         *wls_apps_dir
 orawls::weblogic::version:              *wls_version
-orawls::weblogic::filename:             "fmw_12.2.1.0.0_infrastructure.jar"
+orawls::weblogic::filename:             "fmw_12.2.1.1.0_infrastructure.jar"
 orawls::weblogic::middleware_home_dir:  *wls_middleware_home_dir
 orawls::weblogic::fmw_infra:            true
 
@@ -33,19 +33,19 @@ orautils::wlsAdminServerParam:    "AdminServer"
 
 logoutput:                     &logoutput                     true
 
-# FMW installation on top of WebLogic 12.2.1
+# FMW installation on top of WebLogic 12.2.1.1
 fmw_installations:
   'soa1221':
     version:                 *wls_version
     fmw_product:             "soa"
-    fmw_file1:               "fmw_12.2.1.0.0_soa_Disk1_1of1.zip"
+    fmw_file1:               "fmw_12.2.1.1.0_soa_Disk1_1of1.zip"
     bpm:                     true
     log_output:              true
     remote_file:             false
   'osb1221':
     version:                 *wls_version
     fmw_product:             "osb"
-    fmw_file1:               "fmw_12.2.1.0.0_osb_Disk1_1of1.zip"
+    fmw_file1:               "fmw_12.2.1.1.0_osb_Disk1_1of1.zip"
     log_output:              true
     remote_file:             false
 
@@ -58,8 +58,6 @@ domain_adminserver_address: &domain_adminserver_address "10.10.10.21"
 domain_adminserver_port:    &domain_adminserver_port    7001
 domain_nodemanager_port:    &domain_nodemanager_port    5556
 domain_wls_password:        &domain_wls_password        "weblogic1"
-domain_user_config_file:    "/home/oracle/oracle-soa_domain-WebLogicConfig.properties"
-domain_user_key_file:       "/home/oracle/oracle-soa_domain-WebLogicKey.properties"
 
 
 
@@ -75,7 +73,7 @@ domain_instances:
     log_output:               *logoutput
     nodemanager_address:      "10.10.10.21"
     repository_database_url:  "jdbc:oracle:thin:@soadb.example.com:1521/soarepos.example.com"
-    repository_prefix:        "DEV"
+    repository_prefix:        "DEV6"
     repository_password:      "Welcome01"
     repository_sys_password:  "Welcome01"
     rcu_database_url:         "soadb.example.com:1521:soarepos.example.com"
@@ -156,9 +154,6 @@ control_instances:
 
 # create password file for WLST utility
 userconfig_instances:
-  'soa_domain':
-     log_output:           *logoutput
-     user_config_dir:      '/home/oracle'
 
 # fmw cluster
 fmw_cluster_instances:
@@ -174,7 +169,7 @@ fmw_cluster_instances:
     osb_enabled:          true
     b2b_enabled:          true
     ess_enabled:          true
-    repository_prefix:    "DEV"
+    repository_prefix:    "DEV6"
 
 # # fmw cluster bam only
 # fmw_cluster_instances:

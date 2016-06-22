@@ -105,7 +105,6 @@ class oradb_12c {
       oracle_base               => hiera('oracle_base_dir'),
       oracle_home               => hiera('oracle_home_dir'),
       user_base_dir             => '/home',
-      create_user               => false,
       user                      => hiera('oracle_os_user'),
       group                     => 'dba',
       group_install             => 'oinstall',
