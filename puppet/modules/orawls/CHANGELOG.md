@@ -1,6 +1,17 @@
 # History
 
+## 1.0.53
+- nodemanager manifest will auto restart nodemanager when a property is changed
+- copydomain now support t3s with custom trust
+- wls_setting, wls_adminserver, control, copydomain, nodemanager have new attribute extra_arguments which allows you to pass on some arguments to the component
+- reduce info log output -> moved to debug
+- more functionality to run orawls with a non-root user like rcu & opatch
+
+## 1.0.52
+- fix wls type weblogicConnectUrL bug when running in debug mode
+
 ## 1.0.51
+- Tested against WebLogic 12.2.1.1 + INFRA, SOA, OSB, OHS, use 12.2.1.1 as version
 - add JSSE to wls_daemon when trust is used, this way t3s also works on wls 10.3
 - functionality to run orawls with a non-root user, see [this PR](https://github.com/biemond/biemond-orawls/pull/343)
 
