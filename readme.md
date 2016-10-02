@@ -47,7 +47,7 @@ http://10.10.10.21:7001/em with weblogic1 as password
 ###software
 - JDK 1.8u65 jdk-8u65-linux-x64.tar.gz
 - JDK 8 JCE policy jce_policy-8.zip
-- fmw_12.2.1.0.0_infrastructure.jar
-- fmw_12.2.1.0.0_osb_Disk1_1of1.zip
-- fmw_12.2.1.0.0_soa_Disk1_1of1.zip
+- fmw_12.2.1.1.0_infrastructure.jar
+- fmw_12.2.1.1.0_osb_Disk1_1of1.zip
+- fmw_12.2.1.1.0_soa_Disk1_1of1.zip
 
