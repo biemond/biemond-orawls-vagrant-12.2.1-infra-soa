@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     soa2admin2.vm.hostname = "soa2admin2.example.com"
     soa2admin2.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
-    soa2admin2.vm.synced_folder "/Users/edwin/software", "/software"
+    soa2admin2.vm.synced_folder "/Users/edwinbiemond/software", "/software"
 
     soa2admin2.vm.network :private_network, ip: "10.10.10.21"
 
@@ -62,7 +62,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     mft1admin.vm.hostname = "mft1admin.example.com"
     mft1admin.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
-    mft1admin.vm.synced_folder "/Users/edwin/software", "/software"
+    mft1admin.vm.synced_folder "/Users/edwinbiemond/software", "/software"
 
     mft1admin.vm.network :private_network, ip: "10.10.10.71"
 
@@ -106,7 +106,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     soadb.vm.hostname = "soadb.example.com"
     soadb.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777","fmode=777"]
-    soadb.vm.synced_folder "/Users/edwin/software", "/software"
+    soadb.vm.synced_folder "/Users/edwinbiemond/software", "/software"
 
     soadb.vm.network :private_network, ip: "10.10.10.5"
 

@@ -1,14 +1,19 @@
-begin
-  require 'coveralls'
-  Coveralls.wear!
-
-rescue LoadError
-  puts "No Coveralls support"
-end
-
-require 'rspec-puppet'
+require 'simplecov'
+require 'coveralls'
 require 'puppetlabs_spec_helper/module_spec_helper'
-require 'pathname'
+
+Coveralls.wear!
+
+SimpleCov.formatters = [
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+
+SimpleCov.start do
+  add_filter '/spec/'
+  # Exclude bundled Gems in `/.vendor/`
+  add_filter '/.vendor/'
+end
 
 fixture_path = File.expand_path(File.join(__FILE__, '..', 'fixtures'))
 # include common helpers
@@ -27,5 +32,3 @@ Puppet[:libdir] = "#{Puppet[:modulepath]}/easy_type/lib"
 def param_value(subject, type, title, param)
   subject.resource(type, title).send(:parameters)[param.to_sym]
 end
-
-#at_exit { RSpec::Puppet::Coverage.report! }
