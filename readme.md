@@ -28,7 +28,7 @@ Vagrant boxes
 - oracle oracle
 
 ###software
-- Oracle Database 12.1.0.2 SE Linux
+- Oracle Database 12.1.0.2 SE2 Linux
 - linuxamd64_12102_database_se2_1of2.zip
 - linuxamd64_12102_database_se2_2of2.zip
 
@@ -45,7 +45,7 @@ http://10.10.10.21:7001/em with weblogic1 as password
 - oracle oracle
 
 ###software
-- JDK 1.8u65 jdk-8u65-linux-x64.tar.gz
+- JDK 1.8u121 jdk-8u121-linux-x64.tar.gz
 - JDK 8 JCE policy jce_policy-8.zip
 - fmw_12.2.1.2.0_infrastructure.jar
 - fmw_12.2.1.2.0_osb_Disk1_1of1.zip
